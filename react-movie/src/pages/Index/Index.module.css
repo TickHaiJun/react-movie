@@ -1,0 +1,25 @@
+.mainContainer {
+
+    /* padding: 10px; */
+}
+.headContainer{
+   
+    height: 30px;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.searchContainer{
+    width: 90vw;
+    flex:1;
+}
+.swiperContainer{
+    height: 240px;
+    margin: 20px 0;
+}
+
+/* .tabScroolContainer{
+   
+  
+} */
+
