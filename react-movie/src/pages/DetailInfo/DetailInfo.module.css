@@ -1,0 +1,205 @@
+
+
+.container {
+    position: relative;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.bgContainer {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.bgImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://example.com/movie-poster.jpg'); /* 需要替换为实际的电影海报URL */
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px);
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.movieInfo {
+    position: relative;
+    margin-top: -150px;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+    color: white;
+    z-index: 1;
+}
+
+.poster {
+    width: 120px;
+    height: 160px;
+    border-radius: 8px;
+    background-color: #ddd;
+    background-image: url('https://example.com/movie-poster.jpg'); /* 需要替换为实际的电影海报URL */
+    background-size: cover;
+}
+
+.info h1 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.rating {
+    margin-bottom: 10px;
+}
+
+.score {
+    font-size: 20px;
+    color: #ffb400;
+    margin-right: 10px;
+}
+
+.count {
+    font-size: 14px;
+    color: #ffffff99;
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tags span {
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+}
+
+.meta {
+    font-size: 14px;
+    color: #ffffff99;
+}
+
+.dateSelect {
+    margin-top: 20px;
+    padding: 15px;
+    background: white;
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+}
+
+.dateItem {
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 8px;
+    background: #f5f5f5;
+}
+
+.dateItem.active {
+    background: #ff4d4f;
+    color: white;
+}
+
+.cinemaSelect {
+    margin-top: 10px;
+    padding: 15px;
+    background: white;
+}
+
+.cinemaSelect h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.cinemaItem {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.cinemaInfo {
+    margin-bottom: 15px;
+}
+
+.cinemaInfo h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.cinemaInfo p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.distance {
+    font-size: 12px;
+    color: #666;
+    margin-right: 10px;
+}
+
+.discount {
+    font-size: 12px;
+    color: #ff4d4f;
+}
+
+.showTimes {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+}
+
+.timeItem {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.timeItem div:first-child {
+    font-size: 16px;
+    color: #ff4d4f;
+    margin-bottom: 5px;
+}
+
+.timeItem div:last-child {
+    font-size: 12px;
+    color: #666;
+}
+
+.buyTicket {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buyTicket .discount {
+    font-size: 14px;
+    color: #ff4d4f;
+}
+
+.buyButton {
+    padding: 10px 30px;
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+}

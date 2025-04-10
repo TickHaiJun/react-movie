@@ -1,0 +1,138 @@
+.cardContainer{
+    margin: 10px 0;
+}
+.headContainer{
+    height: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.headTitle{
+    height: 100%;
+    font-size: 16px;
+    font-weight: 800;
+    border-bottom: 3px solid #e44949;
+
+}
+.headMore{
+    height: 100%;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.bodyContainer{
+    width: 100%;
+ 
+
+}
+.movieContainer{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto; /* 启用横向滚动 */
+    overflow-y: hidden; /* 隐藏纵向滚动条 */
+}
+
+.infoListItem{
+    width: 150px;
+    height: 240px;
+    /* margin: 10px; */
+    border-radius: 10px;
+    margin: 0 10px 10px 0;
+   
+}
+
+.infoImgContainer {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    border-radius: 10px;
+}
+.infoImgContainer img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.infoImgBottonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cardName{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    color: #fff;
+}
+.cardScore{
+    font-size: 18px;
+    font-weight: bold;
+    color: orange;
+    margin: 5px;
+
+}
+
+
+.cinemaContainer{
+    width: 100%;
+    height: 200px;
+    
+    /* display: flex; */
+}
+.cinemaItemContainer{
+    /* width: calc(100% - 40px); */
+    height: 200px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    margin-bottom: 20px;
+    padding:12px;
+}
+
+.cinemaItemLeftContainer{
+    display: flex;
+    /* flex: 1; */
+
+}
+.cinemaItemLeftContainer img {
+    width: 150px;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.cinemaItemRightContainer{
+    padding: 0 10px;
+}
+
+
+.cinemaItemRightTitle{
+    font-size: 17px;
+    font-weight: bold;
+    
+}
+
+.cinemaItemRightTime{
+    margin: 10px 0;
+    font-size: 15px;
+    color: gray;
+}
+
+.cinemaItemTagContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
