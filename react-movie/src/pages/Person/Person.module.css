@@ -1,0 +1,220 @@
+.container {
+  padding: 0;
+  margin: 0;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Profile Header Styles */
+.profileHeader {
+  background: linear-gradient(to right, #FF4D4F, #FF8036);
+  color: white;
+  padding: 20px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 60px !important;
+  height: 60px !important;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.userDetails {
+  margin-left: 15px;
+}
+
+.nameWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.vipTag {
+  background-color: #FFD700;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.userId {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 8px;
+}
+
+.editProfileBtn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.settingsIcon {
+  color: white;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+/* Membership Card Styles */
+.membershipCard {
+  background-color: #FF8036;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 16px;
+}
+
+.membershipInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.crownIcon {
+  font-size: 16px;
+  margin-right: 6px;
+}
+
+.membershipText {
+  font-weight: bold;
+}
+
+.membershipBenefits {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Orders Card Styles */
+.ordersCard {
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 12px 16px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.ordersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.viewAll {
+  color: #999;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.rightArrow {
+  margin-left: 4px;
+  font-size: 16px;
+}
+
+.orderTypes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderType {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #333;
+}
+
+.orderTypeIcon {
+  width: 28px;
+  height: 28px;
+  background-color: #FF4D4F;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.orderType:nth-child(1) .orderTypeIcon {
+  background-color: #FF4D4F;
+}
+
+.orderType:nth-child(2) .orderTypeIcon {
+  background-color: #3E7CFF;
+}
+
+.orderType:nth-child(3) .orderTypeIcon {
+  background-color: #FF8036;
+}
+
+.orderType:nth-child(4) .orderTypeIcon {
+  background-color: #14C9C9;
+}
+
+/* Feature Links Styles */
+.featureLinks {
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 12px;
+  padding: 8px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.featureLink {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #f5f5f5;
+  position: relative;
+}
+
+.featureLink:last-child {
+  border-bottom: none;
+}
+
+.featureLinkIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  margin-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.featureLinkIcon i {
+  font-size: 16px;
+}
+
+.featureLinkText {
+  flex: 1;
+  font-size: 14px;
+}
+
+.badge {
+  font-size: 12px;
+  margin-right: 8px;
+}

@@ -3,25 +3,31 @@ import { useState } from 'react'
 import styles from './CardItem.module.css'
 import { Tag, Space } from 'antd-mobile'
 import { RightOutline, ClockCircleOutline, LocationFill, } from 'antd-mobile-icons'
-
+import { useNavigate } from 'react-router-dom'
 
 // type:  movie | cinema
 
 export default function CardItem({ title, type }) {
+    const navigate = useNavigate()
+
+    const handleToDetail = () => {
+        console.log("进入详情页")
+        navigate('/detail')
+    }
     return (
         <div className={styles.cardContainer}>
             <div className={styles.headContainer}>
                 <div className={styles.headTitle}>
                     {title}
                 </div>
-                <div className={styles.headMore}>
+                 <div className={styles.headMore}>
                     全部 <RightOutline />
                 </div>
             </div>
             <div className={styles.bodyContainer}>
                 {type === 'movie' ? (
                     <div className={styles.movieContainer}>
-                        <div className={styles.infoListItem}>
+                        <div className={styles.infoListItem} onClick={handleToDetail}>
                             <div className={styles.infoImgContainer}>
                                 <img
                                     src="https://p0.pipi.cn/mediaplus/friday_image_fe/0fa3343d3d69a1c7357048b07443f06cd4f3e.jpg?imageView2/1/w/464/h/644"
@@ -38,7 +44,7 @@ export default function CardItem({ title, type }) {
 
                 {type === 'cinema' ? (
                     <div className={styles.cinemaContainer}>
-                        <div className={styles.cinemaItemContainer}>
+                        <div className={styles.cinemaItemContainer} onClick={handleToDetail}>
                             <div className={styles.cinemaItemLeftContainer}>
                                 <img src="https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i2/2251059038/O1CN01BhgEtO2GdSgoESael_!!2251059038.jpg" alt="" />
                             </div>

@@ -1,6 +1,11 @@
-import style from './DetailInfo.module.css'
+import style from './DetailInfo.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function DetailInfo() {
+    const navigate  = useNavigate()
+   const handleToBuyTicket = () => {
+    navigate('/payment')
+   }
     return (
         <div className={style.container}>
             {/* 背景图片区域 */}
@@ -85,8 +90,9 @@ export default function DetailInfo() {
             {/* 底部购票按钮 */}
             <div className={style.buyTicket}>
                 <div className={style.discount}>影票特惠，首单立减10元</div>
-                <button className={style.buyButton}>特惠购票</button>
+                <button className={style.buyButton}  onClick={handleToBuyTicket}>特惠购票</button>
             </div>
+
         </div>
     )
 }

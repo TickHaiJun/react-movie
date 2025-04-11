@@ -1,0 +1,22 @@
+.applyContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.titleContainer{
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+.priceContainer{
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}

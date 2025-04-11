@@ -1,16 +1,33 @@
 import { useState } from 'react';
-import { AlipayCircleFill,CheckCircleFill,LeftOutline,ClockCircleOutline  } from 'antd-mobile-icons'
+import { AlipayCircleFill, CheckCircleFill, LeftOutline, ClockCircleOutline,  } from 'antd-mobile-icons'
 import style from './Payment.module.css';
+import { Popup,  } from 'antd-mobile'
+import ApplyInfo from '@/components/ApplyInfo/ApplyInfo';
+import {useNavigate} from 'react-router-dom'
+
 
 export default function Payment() {
     const [selectedPayment, setSelectedPayment] = useState('alipay');
+    const [applyDialogStauts, setApplyDialogStatus] = useState(false)
+    const navigate = useNavigate()
+
+    const handleBack = () =>{
+        navigate(-1)
+    }
+
+
+    const handleBuyTicket = () => {
+
+        setApplyDialogStatus(true)
+      
+    }
 
     return (
         <div className={style.container}>
             {/* 头部 */}
             <div className={style.header}>
-             
-                <LeftOutline className={style.backIcon} />
+
+                <LeftOutline className={style.backIcon}  onClick={handleBack}/>
                 <span>订单支付</span>
                 <div className={style.paymentTimer}>
                     <ClockCircleOutline />
@@ -49,12 +66,12 @@ export default function Payment() {
             <div className={style.paymentMethods}>
                 <h2>选择支付方式</h2>
                 <div className={style.paymentOptions}>
-                    <div 
+                    <div
                         className={`${style.paymentOption} ${selectedPayment === 'alipay' ? style.selected : ''}`}
                         onClick={() => setSelectedPayment('alipay')}
                     >
                         <div className={style.paymentLeft}>
-                           
+
                             <AlipayCircleFill className={style.alipayIcon} />
                             <div>
                                 <div>支付宝</div>
@@ -64,13 +81,13 @@ export default function Payment() {
                         <div className={style.radio}></div>
                     </div>
 
-                    <div 
+                    <div
                         className={`${style.paymentOption} ${selectedPayment === 'wechat' ? style.selected : ''}`}
                         onClick={() => setSelectedPayment('wechat')}
                     >
                         <div className={style.paymentLeft}>
-                           
-                            <CheckCircleFill  className={style.wechatIcon}/>
+
+                            <CheckCircleFill className={style.wechatIcon} />
                             <div>
                                 <div>微信支付</div>
                                 <div className={style.promotion}>满100减5元</div>
@@ -86,8 +103,29 @@ export default function Payment() {
                 <div className={style.totalAmount}>
                     实付金额：<span className={style.amount}>¥97.8</span>
                 </div>
-                <button className={style.payButton}>立即支付</button>
+                <button className={style.payButton} onClick={() => handleBuyTicket()}>立即支付</button>
             </div>
+
+            <Popup
+                visible={applyDialogStauts}
+                onMaskClick={() => {
+                    setApplyDialogStatus(false)
+                }}
+                onClose={()=> setApplyDialogStatus(false)}
+                showCloseButton
+                bodyStyle={{
+                    borderTopLeftRadius: '8px',
+                    borderTopRightRadius: '8px',
+                    minHeight: '60vh',
+                  }}
+            >
+                <div
+                    style={{ height: '40vh', overflowY: 'scroll', padding: '20px' }}
+                >
+         
+                     <ApplyInfo applyDialogStauts={applyDialogStauts}/>
+                </div>
+            </Popup>
         </div>
     );
 }
