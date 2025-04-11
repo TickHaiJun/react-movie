@@ -1,9 +1,16 @@
 import React from 'react';
-import { SetOutline } from 'antd-mobile-icons';
+import { useNavigate } from 'react-router-dom';
 import { Avatar, Badge } from 'antd-mobile';
+import { AiOutlineSetting, AiOutlineHeart, AiOutlineHistory, AiOutlineGift, AiOutlineWallet, AiOutlineComment, AiOutlineCustomerService } from 'react-icons/ai';
 import styles from './Person.module.css';
 
 const Person = () => {
+  const navigate = useNavigate();
+
+  const goToOrders = () => {
+    navigate('/order');
+  };
+  
   return (
     <div className={styles.container}>
       {/* User Profile Section */}
@@ -20,7 +27,7 @@ const Person = () => {
           </div>
         </div>
         <div className={styles.settingsIcon}>
-          <SetOutline fontSize={24} />
+          <AiOutlineSetting fontSize={24} />
         </div>
       </div>
 
@@ -39,33 +46,33 @@ const Person = () => {
       <div className={styles.ordersCard}>
         <div className={styles.ordersHeader}>
           <span>我的订单</span>
-          <div className={styles.viewAll}>
+          <div className={styles.viewAll} onClick={goToOrders}>
             <span>全部订单</span>
             <span className={styles.rightArrow}>›</span>
           </div>
         </div>
         <div className={styles.orderTypes}>
-          <div className={styles.orderType}>
+          <div className={styles.orderType} onClick={goToOrders}>
             <div className={styles.orderTypeIcon}>
-              <i className="iconfont icon-wallet" />
+              <AiOutlineWallet />
             </div>
             <span>待付款</span>
           </div>
-          <div className={styles.orderType}>
+          <div className={styles.orderType} onClick={goToOrders}>
             <div className={styles.orderTypeIcon}>
-              <i className="iconfont icon-ticket" />
+              {/* <AiOutlineTicket /> */}
             </div>
             <span>待使用</span>
           </div>
-          <div className={styles.orderType}>
+          <div className={styles.orderType} onClick={goToOrders}>
             <div className={styles.orderTypeIcon}>
-              <i className="iconfont icon-comment" />
+              <AiOutlineComment />
             </div>
             <span>待评价</span>
           </div>
-          <div className={styles.orderType}>
+          <div className={styles.orderType} onClick={goToOrders}>
             <div className={styles.orderTypeIcon}>
-              <i className="iconfont icon-service" />
+              <AiOutlineCustomerService />
             </div>
             <span>退款/售后</span>
           </div>
@@ -76,7 +83,7 @@ const Person = () => {
       <div className={styles.featureLinks}>
         <div className={styles.featureLink}>
           <div className={styles.featureLinkIcon} style={{ backgroundColor: '#FF5C5C' }}>
-            <i className="iconfont icon-heart" />
+            <AiOutlineHeart />
           </div>
           <span className={styles.featureLinkText}>我的收藏</span>
           <span className={styles.rightArrow}>›</span>
@@ -84,7 +91,7 @@ const Person = () => {
         
         <div className={styles.featureLink}>
           <div className={styles.featureLinkIcon} style={{ backgroundColor: '#FFA940' }}>
-            <i className="iconfont icon-history" />
+            <AiOutlineHistory />
           </div>
           <span className={styles.featureLinkText}>观影历史</span>
           <span className={styles.rightArrow}>›</span>
@@ -92,7 +99,7 @@ const Person = () => {
         
         <div className={styles.featureLink}>
           <div className={styles.featureLinkIcon} style={{ backgroundColor: '#4CD964' }}>
-            <i className="iconfont icon-coupon" />
+            <AiOutlineGift />
           </div>
           <span className={styles.featureLinkText}>优惠券</span>
           <Badge content="3张可用" className={styles.badge} />

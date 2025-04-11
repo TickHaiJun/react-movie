@@ -68,12 +68,6 @@ button:focus-visible {
 } */
 
 
-#root {
+body{
   margin: 0;
-  background-color: aliceblue;
-}
-
-
-.mainContainer{
-  margin: 10px 0;
 }

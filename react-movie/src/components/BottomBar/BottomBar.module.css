@@ -25,9 +25,10 @@
   }
   
   .icon {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 3px;
     color: #999;
+    transition: all 0.3s ease;
   }
   
   .label {
@@ -37,15 +38,15 @@
   }
   
   .active {
-    color: #FF4D4F;
+    color: #FF5F16;
   }
   
   .active .icon {
-    color: #FF4D4F;
+    color: #FF5F16;
   }
   
   .active .label {
-    color: #FF4D4F;
+    color: #FF5F16;
     font-weight: 500;
   }
   

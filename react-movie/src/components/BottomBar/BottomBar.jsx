@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { AiOutlineHome, AiOutlineAppstore, AiOutlineStar, AiOutlineUser } from 'react-icons/ai';
 import styles from './BottomBar.module.css';
 
 const BottomBar = () => {
@@ -19,10 +20,10 @@ const BottomBar = () => {
   const [activeItem, setActiveItem] = useState(getActiveItemFromPath(currentPath));
 
   const menuItems = [
-    { id: 'home', label: '首页', iconClass: 'iconfont icon-home', path: '/' },
-    { id: 'category', label: '分类', iconClass: 'iconfont icon-category', path: '/category' },
-    { id: 'favorite', label: '收藏', iconClass: 'iconfont icon-star', path: '/favorite' },
-    { id: 'profile', label: '我的', iconClass: 'iconfont icon-user', path: '/profile' },
+    { id: 'home', label: '首页', icon: AiOutlineHome, path: '/' },
+    { id: 'category', label: '分类', icon: AiOutlineAppstore, path: '/category' },
+    { id: 'favorite', label: '收藏', icon: AiOutlineStar, path: '/favorite' },
+    { id: 'profile', label: '我的', icon: AiOutlineUser, path: '/profile' },
   ];
 
   const handleItemClick = (item) => {
@@ -38,7 +39,7 @@ const BottomBar = () => {
           className={`${styles.menuItem} ${activeItem === item.id ? styles.active : ''}`}
           onClick={() => handleItemClick(item)}
         >
-          <i className={`${styles.icon} ${item.iconClass}`}></i>
+          <item.icon className={styles.icon} />
           <span className={styles.label}>{item.label}</span>
         </div>
       ))}

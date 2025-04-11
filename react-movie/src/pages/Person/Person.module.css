@@ -125,6 +125,7 @@
   font-size: 12px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .rightArrow {
@@ -143,6 +144,7 @@
   align-items: center;
   font-size: 12px;
   color: #333;
+  cursor: pointer;
 }
 
 .orderTypeIcon {
@@ -155,6 +157,7 @@
   justify-content: center;
   align-items: center;
   color: white;
+  font-size: 16px;
 }
 
 .orderType:nth-child(1) .orderTypeIcon {
@@ -188,6 +191,7 @@
   padding: 16px 0;
   border-bottom: 1px solid #f5f5f5;
   position: relative;
+  cursor: pointer;
 }
 
 .featureLink:last-child {
@@ -203,9 +207,6 @@
   justify-content: center;
   align-items: center;
   color: white;
-}
-
-.featureLinkIcon i {
   font-size: 16px;
 }
 

@@ -4,6 +4,7 @@ import Payment from '../pages/Payment/Payment';
 import Index from '@/pages/Index/Index';
 import ResultPage from '@/pages/ResultPage/ResultPage';
 import Person from '@/pages/Person/Person';
+import Order from '@/pages/Order/Order';
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     {
         path: '/profile',
         element: <Person />,
+    },
+    {
+        path: '/order',
+        element: <Order />,
     },
 ]);
 
