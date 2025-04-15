@@ -1,93 +1,114 @@
-
-import { useState } from 'react'
-import styles from './CardItem.module.css'
-import { Tag, Space } from 'antd-mobile'
-import { RightOutline, ClockCircleOutline, LocationFill, } from 'antd-mobile-icons'
 import { useNavigate } from 'react-router-dom'
+import styles from './CardItem.module.css'
+import { Tag } from 'antd-mobile'
+import { RightOutline, ClockCircleOutline, LocationFill } from 'antd-mobile-icons'
 
-// type:  movie | cinema
+// type:  MOVIE | CONCERT
 
-export default function CardItem({ title, type }) {
+export default function CardItem({ title, type, items = [], onItemClick }) {
     const navigate = useNavigate()
 
-    const handleToDetail = () => {
-        console.log("进入详情页")
-        navigate('/detail')
+    const handleToDetail = (id) => {
+        if (onItemClick) {
+            onItemClick(id)
+        } else {
+            navigate(`/detail?id=${id}`)
+        }
     }
+
+    const handleViewMore = () => {
+        // 导航到分类列表页面
+        if (type === 'MOVIE') {
+            navigate('/?tab=MOVIE')
+        } else if (type === 'CONCERT') {
+            navigate('/?tab=CONCERT')
+        }
+    }
+
+    // 如果没有数据，显示空状态
+    if (!items || items.length === 0) {
+        return (
+            <div className={styles.cardContainer}>
+                <div className={styles.headContainer}>
+                    <div className={styles.headTitle}>
+                        {title}
+                    </div>
+                </div>
+                <div className={styles.emptyState}>
+                    暂无数据
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className={styles.cardContainer}>
             <div className={styles.headContainer}>
                 <div className={styles.headTitle}>
                     {title}
                 </div>
-                 <div className={styles.headMore}>
+                {/* <div className={styles.headMore} onClick={handleViewMore}>
                     全部 <RightOutline />
-                </div>
+                </div> */}
             </div>
             <div className={styles.bodyContainer}>
-                {type === 'movie' ? (
+                {type === 'MOVIE' && (
                     <div className={styles.movieContainer}>
-                        <div className={styles.infoListItem} onClick={handleToDetail}>
-                            <div className={styles.infoImgContainer}>
-                                <img
-                                    src="https://p0.pipi.cn/mediaplus/friday_image_fe/0fa3343d3d69a1c7357048b07443f06cd4f3e.jpg?imageView2/1/w/464/h/644"
-                                    alt=""
-                                />
-                                <div className={styles.infoImgBottonContainer}>
-                                    <span className={styles.cardName}>向阳花</span>
-                                    <span className={styles.cardScore}>9.4</span>
+                        {items.slice(0, 4).map((MOVIE) => (
+                            <div 
+                                key={MOVIE.id} 
+                                className={styles.infoListItem} 
+                                onClick={() => handleToDetail(MOVIE.id)}
+                            >
+                                <div className={styles.infoImgContainer}>
+                                    <img
+                                        src={MOVIE.backgroundImage || "https://via.placeholder.com/464x644"}
+                                        alt={MOVIE.title}
+                                    />
+                                    <div className={styles.infoImgBottonContainer}>
+                                        <span className={styles.cardName}>{MOVIE.title}</span>
+                                        <span className={styles.cardScore}>{MOVIE.price}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
-                ) : null}
+                )}
 
-                {type === 'cinema' ? (
+                {type === 'CONCERT' && (
                     <div className={styles.cinemaContainer}>
-                        <div className={styles.cinemaItemContainer} onClick={handleToDetail}>
-                            <div className={styles.cinemaItemLeftContainer}>
-                                <img src="https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i2/2251059038/O1CN01BhgEtO2GdSgoESael_!!2251059038.jpg" alt="" />
-                            </div>
-                            <div className={styles.cinemaItemRightContainer}>
-                                <div className={styles.cinemaItemRightTitle}>
-                                    2025 张学友演唱会
+                        {items.slice(0, 2).map((CONCERT) => (
+                            <div 
+                                key={CONCERT.id} 
+                                className={styles.cinemaItemContainer} 
+                                onClick={() => handleToDetail(CONCERT.id)}
+                            >
+                                <div className={styles.cinemaItemLeftContainer}>
+                                    <img 
+                                        src={CONCERT.backgroundImage || "https://via.placeholder.com/120x160"} 
+                                        alt={CONCERT.title} 
+                                    />
                                 </div>
-                                <div className={styles.cinemaItemRightTime}>
-                                    <ClockCircleOutline /> 2025.4.11 周五 19:30
-                                </div>
-
-                                <div className={styles.cinemaItemRightTime}>
-                                    <LocationFill /> 上海 * 上海体育场
-                                </div>
-                                <div className={styles.cinemaItemTagContainer}>
-                                    <Tag color='warning'>今日可订</Tag>
-                                    <Tag color='primary'>电子票</Tag>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.cinemaItemContainer}>
-                            <div className={styles.cinemaItemLeftContainer}>
-                                <img src="https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i2/2251059038/O1CN01BhgEtO2GdSgoESael_!!2251059038.jpg" alt="" />
-                            </div>
-                            <div className={styles.cinemaItemRightContainer}>
-                                <div className={styles.cinemaItemRightTitle}>
-                                    2025 张学友演唱会
-                                </div>
-                                <div className={styles.cinemaItemRightTime}>
-                                    <ClockCircleOutline /> 2025.4.11 周五 19:30
-                                </div>
-
-                                <div className={styles.cinemaItemRightTime}>
-                                    <LocationFill /> 上海 * 上海体育场
-                                </div>
-                                <div className={styles.cinemaItemTagContainer}>
-                                    <Tag color='warning'>今日可订</Tag>
-                                    <Tag color='primary'>电子票</Tag>
+                                <div className={styles.cinemaItemRightContainer}>
+                                    <div className={styles.cinemaItemRightTitle}>
+                                        {CONCERT.title}
+                                    </div>
+                                    <div className={styles.cinemaItemRightTime}>
+                                        <ClockCircleOutline /> {CONCERT.time}
+                                    </div>
+                                    <div className={styles.cinemaItemRightTime}>
+                                        <LocationFill /> {CONCERT.location}
+                                    </div>
+                                    <div className={styles.cinemaItemTagContainer}>
+                                        <Tag color='warning'>今日可订</Tag>
+                                        <Tag color='primary'>电子票</Tag>
+                                        <span className={styles.priceTag}>¥{CONCERT.price}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
-                ) : null}
+                )}
             </div>
         </div>
     )

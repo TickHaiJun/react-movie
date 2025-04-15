@@ -12,6 +12,7 @@
   "dependencies": {
     "antd-mobile": "^5.39.0",
     "antd-mobile-icons": "^0.3.0",
+    "axios": "^1.8.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^5.5.0",

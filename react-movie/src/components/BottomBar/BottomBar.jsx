@@ -11,8 +11,8 @@ const BottomBar = () => {
   // Set active item based on current path
   const getActiveItemFromPath = (path) => {
     if (path === '/') return 'home';
-    if (path === '/category') return 'category';
-    if (path === '/favorite') return 'favorite';
+    if (path === '/movie') return 'movie';
+    if (path === '/concert') return 'concert';
     if (path === '/profile') return 'profile';
     return 'home';
   };
@@ -21,8 +21,8 @@ const BottomBar = () => {
 
   const menuItems = [
     { id: 'home', label: '首页', icon: AiOutlineHome, path: '/' },
-    { id: 'category', label: '分类', icon: AiOutlineAppstore, path: '/category' },
-    { id: 'favorite', label: '收藏', icon: AiOutlineStar, path: '/favorite' },
+    { id: 'movie', label: '电影', icon: AiOutlineAppstore, path: '/movie' },
+    { id: 'concert', label: '演唱会', icon: AiOutlineStar, path: '/concert' },
     { id: 'profile', label: '我的', icon: AiOutlineUser, path: '/profile' },
   ];
 

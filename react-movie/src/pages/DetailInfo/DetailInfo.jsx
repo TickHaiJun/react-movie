@@ -1,98 +1,205 @@
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Toast } from 'antd-mobile';
+import { LeftOutline, StarFill, LocationFill } from 'antd-mobile-icons';
 import style from './DetailInfo.module.css';
-import { useNavigate } from 'react-router-dom';
+import { eventService } from '../../services/api';
+import { useAuth } from '../../context/AuthContextWrapper';
 
 export default function DetailInfo() {
-    const navigate  = useNavigate()
-   const handleToBuyTicket = () => {
-    navigate('/payment')
-   }
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { isAuthenticated } = useAuth();
+    const eventId = new URLSearchParams(location.search).get('id');
+    
+    const [eventDetails, setEventDetails] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [selectedDate, setSelectedDate] = useState(0);
+    const [selectedTime, setSelectedTime] = useState(null);
+    
+    useEffect(() => {
+        if (!eventId) {
+            Toast.show({
+                content: '缺少活动ID',
+                position: 'bottom',
+            });
+            navigate('/');
+            return;
+        }
+        
+        fetchEventDetails();
+    }, [eventId]);
+    
+    const fetchEventDetails = async () => {
+        try {
+            setLoading(true);
+            const data = await eventService.getEvent(eventId);
+            setEventDetails(data);
+        } catch (error) {
+            console.error('获取活动详情失败:', error);
+            Toast.show({
+                content: '获取活动详情失败',
+                position: 'bottom',
+            });
+        } finally {
+            setLoading(false);
+        }
+    };
+    
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+    
+    const handleDateSelect = (index) => {
+        setSelectedDate(index);
+    };
+    
+    const handleTimeSelect = (time) => {
+        setSelectedTime(time);
+    };
+    
+    const handleToBuyTicket = () => {
+        if (!isAuthenticated()) {
+            Toast.show({
+                content: '请先登录',
+                position: 'bottom',
+            });
+            navigate('/login', { state: { from: location.pathname + location.search } });
+            return;
+        }
+        
+        navigate(`/payment?eventId=${eventId}`);
+    };
+    
+    // 生成日期数据
+    const generateDateList = () => {
+        const dateList = [];
+        const today = new Date();
+        
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+            
+            const dayNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            const dayName = i === 0 ? '今天' : i === 1 ? '明天' : dayNames[date.getDay()];
+            
+            dateList.push({
+                dayName,
+                date: `${date.getMonth() + 1}/${date.getDate()}`
+            });
+        }
+        
+        return dateList;
+    };
+    
+    const dateList = generateDateList();
+    
+    // 生成场次数据
+    const generateTimeList = () => {
+        return [
+            { time: '10:30', format: '原版', price: eventDetails?.price || 0 },
+            { time: '13:15', format: 'IMAX', price: (eventDetails?.price || 0) + 20 },
+            { time: '15:50', format: '原版', price: eventDetails?.price || 0 },
+            { time: '18:20', format: 'IMAX', price: (eventDetails?.price || 0) + 20 },
+            { time: '21:00', format: '原版', price: (eventDetails?.price || 0) - 10 },
+        ];
+    };
+    
+    const timeList = generateTimeList();
+    
+    if (loading) {
+        return <div className={style.loading}>加载中...</div>;
+    }
+    
+    if (!eventDetails) {
+        return <div className={style.error}>活动不存在或已下架</div>;
+    }
+    
     return (
         <div className={style.container}>
+            {/* 返回按钮 */}
+            {/* <div className={style.backButton} onClick={handleGoBack}>
+              
+            </div> */}
+            
             {/* 背景图片区域 */}
             <div className={style.bgContainer}>
-                <div className={style.bgImage}></div>
+            <LeftOutline color='var(--adm-color-primary)' onClick={handleGoBack}  fontSize={36} />
+                <div 
+                    className={style.bgImage}
+                    style={{ backgroundImage: `url(${eventDetails.backgroundImage || 'https://via.placeholder.com/500x300'})` }}
+                ></div>
                 <div className={style.mask}></div>
             </div>
 
-            {/* 电影信息区域 */}
+            {/* 活动信息区域 */}
             <div className={style.movieInfo}>
-                <div className={style.poster}></div>
+                <div 
+                    className={style.poster}
+                    style={{ backgroundImage: `url(${eventDetails.backgroundImage || 'https://via.placeholder.com/180x240'})` }}
+                ></div>
                 <div className={style.info}>
-                    <h1>奥本海默</h1>
+                    <h1>{eventDetails.title}</h1>
                     <div className={style.rating}>
-                        <span className={style.score}>9.2</span>
+                        <span className={style.score}><StarFill /> 9.2</span>
                         <span className={style.count}>123.4万人评</span>
                     </div>
                     <div className={style.tags}>
-                        <span>剧情</span>
-                        <span>传记</span>
-                        <span>战争</span>
+                        <span>{eventDetails.type}</span>
                     </div>
-                    <div className={style.meta}>美国 · 2023 · 180分钟</div>
+                    <div className={style.meta}>
+                        <LocationFill /> {eventDetails.location}
+                    </div>
+                    <div className={style.time}>
+                        场次：{eventDetails.time}
+                    </div>
                 </div>
             </div>
 
             {/* 日期选择区域 */}
             <div className={style.dateSelect}>
-                <div className={`${style.dateItem} ${style.active}`}>
-                    <div>今天</div>
-                    <div>10/20</div>
-                </div>
-                <div className={style.dateItem}>
-                    <div>明天</div>
-                    <div>10/21</div>
-                </div>
-                <div className={style.dateItem}>
-                    <div>周日</div>
-                    <div>10/22</div>
-                </div>
-                <div className={`${style.dateItem} ${style.active}`}>
-                    <div>今天</div>
-                    <div>10/20</div>
-                </div>
-                <div className={style.dateItem}>
-                    <div>明天</div>
-                    <div>10/21</div>
-                </div>
-                <div className={style.dateItem}>
-                    <div>周日</div>
-                    <div>10/22</div>
-                </div>
+                {dateList.map((item, index) => (
+                    <div 
+                        key={index}
+                        className={`${style.dateItem} ${selectedDate === index ? style.active : ''}`}
+                        onClick={() => handleDateSelect(index)}
+                    >
+                        <div>{item.dayName}</div>
+                        <div>{item.date}</div>
+                    </div>
+                ))}
             </div>
 
-            {/* 影院选择区域 */}
+            {/* 场馆选择区域 */}
             <div className={style.cinemaSelect}>
-                <h2>影院选择</h2>
+                <h2>场次选择</h2>
                 <div className={style.cinemaItem}>
                     <div className={style.cinemaInfo}>
-                        <h3>万达影城（海淀店）</h3>
-                        <p>海淀区中关村大街136号方广大厦5层</p>
-                        <span className={style.distance}>4.5km</span>
+                        <h3>{eventDetails.location}</h3>
+                        <p>地址：{eventDetails.location}</p>
                         <span className={style.discount}>退票低至7折</span>
                     </div>
                     <div className={style.showTimes}>
-                        <div className={style.timeItem}>
-                            <div>10:30</div>
-                            <div>原版2D</div>
-                        </div>
-                        <div className={style.timeItem}>
-                            <div>13:15</div>
-                            <div>IMAX 2D</div>
-                        </div>
-                        <div className={style.timeItem}>
-                            <div>15:50</div>
-                            <div>原版2D</div>
-                        </div>
+                        {timeList.map((item, index) => (
+                            <div 
+                                key={index}
+                                className={`${style.timeItem} ${selectedTime === index ? style.activeTime : ''}`}
+                                onClick={() => handleTimeSelect(index)}
+                            >
+                                <div>{item.time}</div>
+                                <div>{item.format}</div>
+                                <div className={style.price}>¥{item.price}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
 
             {/* 底部购票按钮 */}
             <div className={style.buyTicket}>
-                <div className={style.discount}>影票特惠，首单立减10元</div>
-                <button className={style.buyButton}  onClick={handleToBuyTicket}>特惠购票</button>
+                <div className={style.discount}>价格：¥{eventDetails.price}</div>
+                <button className={style.buyButton} onClick={handleToBuyTicket}>立即购票</button>
             </div>
-
         </div>
-    )
+    );
 }
