@@ -173,9 +173,9 @@ npm run preview
 ## 欢迎联系我
 ![image](https://github.com/user-attachments/assets/caf8ae0d-7f4f-47d1-aad9-2833cb2f0bc4)
 
-![edaff1629f3e2a86095b01ee1dfc083a](https://github.com/user-attachments/assets/4af0d159-cb10-40b3-a904-cc60da54f3ad)
 
+
+<img src="https://github.com/user-attachments/assets/4af0d159-cb10-40b3-a904-cc60da54f3ad" width="200" > 
 
 ---
 
-项目由 ❤️ 制作和维护 
